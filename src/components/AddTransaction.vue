@@ -7,7 +7,7 @@
     </div>
     <div class="form-control">
       <label for="amount"
-        >Amount <br />
+        >Amount (in ₹) <br />
         (negative - expense, positive - income)</label
       >
       <input
@@ -22,21 +22,21 @@
 </template>
 
 <script setup>
-import { useToast } from 'vue-toastification';
-import { ref } from 'vue';
+import { useToast } from "vue-toastification";
+import { ref } from "vue";
 
-const text = ref('');
-const amount = ref('');
+const text = ref("");
+const amount = ref("");
 
 // Get toast interface
 const toast = useToast();
 
-const emit = defineEmits(['transactionSubmitted']);
+const emit = defineEmits(["transactionSubmitted"]);
 
 const onSubmit = () => {
   if (!text.value || !amount.value) {
     // Display a toast error message if either field is empty
-    toast.error('Both fields must be filled.');
+    toast.error("Both fields must be filled.");
     return;
   }
 
@@ -45,10 +45,10 @@ const onSubmit = () => {
     amount: parseFloat(amount.value),
   };
 
-  emit('transactionSubmitted', transactionData);
+  emit("transactionSubmitted", transactionData);
 
   // Clear form fields
-  text.value = '';
-  amount.value = '';
+  text.value = "";
+  amount.value = "";
 };
 </script>
